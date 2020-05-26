@@ -49,8 +49,10 @@ NewConfirmed:'',
 NewDeaths:'',
 TotalDeaths:'',
 NewRecovered:'',
-TotalRecovered:''
-
+TotalRecovered:'',
+TotalConfirmed:'',
+TotalDeaths1 :'',
+TotalRecovered1:''
 
 
 }
@@ -69,6 +71,9 @@ onSearchChanges =(event)=>{
     
     fetch('https://api.covid19api.com/summary').then(response=>response.json())
     .then(users=> 
+
+
+
     users.Countries.forEach(items=>{
   
     if(items.Country === dropdownvalue){
@@ -86,9 +91,14 @@ onSearchChanges =(event)=>{
     //console.log(items);
     
     
-    })
-    
-    
+    } ,
+    console.log(users.Global.NewConfirmed) ,
+    this.setState({TotalConfirmed1:users.Global.NewConfirmed}),
+    this.setState({TotalDeaths1:users.Global.TotalDeaths}),
+    this.setState({TotalRecovered1:users.Global.TotalRecovered})
+    )
+  
+
     
         );
     
@@ -115,22 +125,22 @@ return(
 <div className='menu-item1'>
 
 <div className='content'>
-<h1 className='title'>CoronaVirus</h1>
-<span className='subtitle' >A Pandemic</span>
+<h1 className='title'>TotalConfirmed</h1>
+<span className='subtitle' >{this.state.TotalConfirmed1}</span>
 </div>
 </div>
 <div className='menu-item1'>
 
 <div className='content'>
-<h1 className='title'>CoronaVirus</h1>
-<span className='subtitle' >A Pandemic</span>
+<h1 className='title'>TotalDeaths</h1>
+<span className='subtitle' >{this.state.TotalDeaths1}</span>
 </div>
 </div>
 <div className='menu-item1'>
 
 <div className='content'>
-<h1 className='title'>CoronaVirus</h1>
-<span className='subtitle' >A Pandemic</span>
+<h1 className='title'>TotalRecovered</h1>
+<span className='subtitle' >{this.state.TotalRecovered1}</span>
 </div>
 </div>
 </div>
