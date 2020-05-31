@@ -13,6 +13,8 @@ key:''
 }
 ]
 
+const  world=[]
+
 countryListNames.forEach(items=>{
 
 countries.push({
@@ -52,19 +54,29 @@ NewRecovered:'',
 TotalRecovered:'',
 TotalConfirmed:'',
 TotalDeaths1 :'',
-TotalRecovered1:''
-
-
+TotalRecovered1:'',
+Countryconfirmed:'',
+Country:[]
 }
 
 
 
 }
 
+onload=()=>{
 
+  fetch('https://api.covid19api.com/summary').then(response=>response.json())
+  .then(users=> 
+
+console.log(users)
+
+  );
+
+
+}
 
 onSearchChanges =(event)=>{
-
+  const{Country}=this.state;
 
     const dropdownvalue=event.target.value;
     console.log(dropdownvalue);
@@ -72,10 +84,14 @@ onSearchChanges =(event)=>{
     fetch('https://api.covid19api.com/summary').then(response=>response.json())
     .then(users=> 
 
+    
 
 
-    users.Countries.forEach(items=>{
+
+    users.Countries.map(items=>
   
+      //world.push(items.Country);
+{
     if(items.Country === dropdownvalue){
        this.setState({confirmednumber:items.TotalConfirmed});
        this.setState({NewConfirmed:items.NewConfirmed});
@@ -88,15 +104,22 @@ onSearchChanges =(event)=>{
     
     
     }
+
     //console.log(items);
-    
-    
-    } ,
-    console.log(users.Global.NewConfirmed) ,
-    this.setState({TotalConfirmed1:users.Global.NewConfirmed}),
+},
+
+this.setState({TotalConfirmed1:users.Global.NewConfirmed}),
     this.setState({TotalDeaths1:users.Global.TotalDeaths}),
     this.setState({TotalRecovered1:users.Global.TotalRecovered})
-    )
+    ),
+  //  users.Countries.map(items=>
+    
+  //   ),
+    //this.setState({Country:users}),
+    
+    //console.log(Country),
+    
+    
   
 
     
@@ -108,8 +131,9 @@ onSearchChanges =(event)=>{
     }
 
 render(){
-
-
+  this.onload();
+ // const{Country}=this.state;
+//console.log(world);
 return(
 <div className='homepage'>
 <div className='directory-menu'>
@@ -201,11 +225,22 @@ return(
 
 <div className='directory-menu'>
 <div className='menu-item'>
+<table className='table'>
+  <tr >
+    <th>Country</th>
+  <th>TotalConfirmed</th>
+  <th>NewConfirmed</th>
+    <th>TotalConfirmed</th> 
+    <th>NewDeaths</th>   
+    <th>TotalDeaths</th>   
+    <th>NewRecovered</th>    
+    <th>TotalRecovered</th>   
+  </tr>
+  <tr ><td>{this.state.Country}</td></tr>
+  </table>
 
-<div className='content'>
-<h1 className='title'>In Progess ....</h1>
-<span className='subtitle' >In Progress ...</span>
-</div>
+
+
 </div>
 </div>
 </div>
