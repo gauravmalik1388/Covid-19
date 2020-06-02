@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Country from  './countries';
+import Country from  './Covid.component';
 
 
 
