@@ -1,8 +1,9 @@
 import React from 'react';
 
+import Total from './Total.component';
+import Allcountries from './Allcountries/Allcountries.component';
 
-
-
+const world=[];
 class Covid extends React.Component{
 
 constructor(){
@@ -11,16 +12,17 @@ super();
 
 this.state={
 
-Countries:[],
-Countryinfo:[
-{
-Country:''
+country:[],
+Global:{
+Global:{},
+Countries:[]
 
 
-}
-
-
-]
+},
+TotalRecovered:'',
+TotalConfirmed:'',
+TotalDeaths:''
+,abc:[]
 
 
 
@@ -33,36 +35,75 @@ Country:''
 
 }
 componentDidMount() {
-
+   // const{Countries,TotalRecovered,TotalConfirmed,TotalDeaths}=this.state;
     fetch('https://api.covid19api.com/summary').then(response=>response.json())
   .then(users=>
-this.setState({Countries:users.Countries})
-    
-    
-    
-    
-    );
 
 
+
+this.setState({Global:users}),
+
+
+
+
+
+
+    
+
+    
+    //console.log(users.Global.NewConfirmed)
+
+  )
 
 
 
 }
 
 render(){
-    const{Countries,Countryinfo}=this.state;
+    const{Global,abc,country,TotalRecovered,TotalConfirmed,TotalDeaths}=this.state;
 
+    // Global.Countries.map(country=>
+    //     world.push(country.Country)
+        
+    //     );
 
-
-  console.log(Countries);
-
-
-
+    //     console.log(world);
+    
 
 
 return (
+
+    
+    
+
+
+
   
-<div></div>
+<div className='homepage'>
+    <h1>dsasfs</h1>
+{
+
+
+        
+    <Total TotalRecovered={Global.Global.TotalRecovered}  TotalConfirmed={Global.Global.TotalConfirmed}  TotalDeaths={Global.Global.TotalDeaths} />,
+    Global.Countries.map(({CountryCode, Country,...otherprops})=>
+    (
+console.log(Country),
+<Allcountries key={CountryCode} Country={Country} {...otherprops}/>
+
+
+    ))
+    
+    
+
+
+
+}
+
+
+
+
+</div>
 
 )
 
