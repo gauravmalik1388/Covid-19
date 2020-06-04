@@ -31,6 +31,23 @@ const Total = ({ TotalRecovered, TotalConfirmed, Countries, TotalDeaths }) => (
   </div>
 </div>
 </div>
+<div>
+<select id="types" class="w-100 db h2 f6 bg-near-white ba b--sliver gray" name="">
+  <option value="">All Types</option>
+  
+   {
+ Countries.map(Country=>(
+  <option value={Country.Country} >
+   {Country.Country}
+   </option>
+  ))
+
+   }
+  
+</select>
+<div className='directory-menu'>
+    <div className='menu-item1'></div>
+</div></div>
 <div className='directory-menu'>
       <div class="pa4">
         <div class="overflow-auto">
