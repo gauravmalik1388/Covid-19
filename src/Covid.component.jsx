@@ -62,12 +62,7 @@ this.setState({Global:users}),
 render(){
     const{Global,abc,country,TotalRecovered,TotalConfirmed,TotalDeaths}=this.state;
 
-    // Global.Countries.map(country=>
-    //     world.push(country.Country)
-        
-    //     );
-
-    //     console.log(world);
+  
     
 
 
@@ -80,25 +75,16 @@ return (
 
   
 <div className='homepage'>
-    <h1>dsasfs</h1>
+  
+
+
 {
-
-
-        
-    <Total TotalRecovered={Global.Global.TotalRecovered}  TotalConfirmed={Global.Global.TotalConfirmed}  TotalDeaths={Global.Global.TotalDeaths} />,
-    Global.Countries.map(({CountryCode, Country,...otherprops})=>
-    (
-console.log(Country),
-<Allcountries key={CountryCode} Country={Country} {...otherprops}/>
-
-
-    ))
-    
-    
+ <Total TotalRecovered={Global.Global.TotalRecovered} Countries={Global.Countries} TotalConfirmed={Global.Global.TotalConfirmed}  TotalDeaths={Global.Global.TotalDeaths} />
+}   
 
 
 
-}
+
 
 
 
